@@ -1,203 +1,277 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Seed Trainers Leaderboard</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Seed Trainers — Leaderboard & Navigators Guild</title>
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-        Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      background-color: #030f26;
-      color: #ecf3ff;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-    .stars, .twinkles {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: -1;
-      background-repeat: repeat;
-    }
-    .stars {
-      background-image:
-        radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.9) 70%, transparent 71%),
-        radial-gradient(1.5px 1.5px at 80px 120px, rgba(167,213,255,0.9) 70%, transparent 71%),
-        radial-gradient(1.2px 1.2px at 150px 200px, rgba(100,255,218,0.9) 70%, transparent 71%),
-        radial-gradient(2px 2px at 250px 300px, rgba(255,255,200,0.9) 70%, transparent 71%),
-        radial-gradient(1.8px 1.8px at 320px 400px, rgba(255,255,255,0.7) 70%, transparent 71%);
-      background-size: 400px 400px;
-      animation: drift 200s linear infinite;
-      opacity: 0.9;
-      filter: drop-shadow(0 0 6px rgba(255,255,255,0.8));
-    }
-    .twinkles {
-      background-image:
-        radial-gradient(2px 2px at 60px 100px, rgba(255,255,255,1) 70%, transparent 71%),
-        radial-gradient(2px 2px at 200px 50px, rgba(167,213,255,1) 70%, transparent 71%),
-        radial-gradient(3px 3px at 300px 250px, rgba(100,255,218,1) 70%, transparent 71%),
-        radial-gradient(2px 2px at 420px 320px, rgba(255,255,200,1) 70%, transparent 71%);
-      background-size: 500px 500px;
-      animation: twinkle 5s ease-in-out infinite alternate;
-      opacity: 1;
-    }
-    @keyframes drift {
-      from { transform: translate3d(0, 0, 0); }
-      to   { transform: translate3d(100%, 100%, 0); }
-    }
-    @keyframes twinkle {
-      from { opacity: 0.6; }
-      to   { opacity: 1; }
-    }
-    .container {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 40px 20px;
-    }
-    h1 {
-      text-align: center;
-      font-size: 3rem;
-      margin-bottom: 10px;
-      text-shadow: 0 0 15px rgba(255,255,255,0.6);
-    }
-    h2 {
-      margin: 0 0 10px;
-      font-size: 1.6rem;
-      text-shadow: 0 0 10px rgba(255,255,255,0.5);
-    }
-    .card {
-      background: rgba(255,255,255,0.05);
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-      backdrop-filter: blur(6px);
-      padding: 20px;
-      margin-top: 30px;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-    th, td {
-      padding: 12px;
-      text-align: left;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-      font-size: 0.95rem;
-    }
-    th {
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-    .winner {
-      background-color: rgba(0, 255, 150, 0.15);
-      box-shadow: inset 0 0 10px rgba(0,255,150,0.7);
-    }
-    tbody tr:hover {
-      background-color: rgba(255,255,255,0.08);
-      transition: background-color 0.3s ease;
-    }
-  </style>
+:root{
+  /* Daytime color palette for a bright travel vibe */
+  --bg:#e3f2fd;       /* light sky blue */
+  --bg2:#cfe3fa;      /* paler sky tone */
+  --ink:#0a3057;      /* dark blue ink for text */
+  --muted:#557aa7;    /* muted slate blue for secondary text */
+  --honey:#f4a261;    /* warm honey accent */
+  --aqua:#2a9d8f;     /* deep aqua accent */
+  --mag:#e76f51;      /* soft coral-magenta */
+  --cyan:#2a9d8f;     /* reuse aqua for cyan */
+  --vio:#264653;      /* desaturated navy */
+  --border:rgba(10,48,87,0.2); /* subtle border for day */
+  --card:rgba(255,255,255,0.8); /* translucent white card backgrounds */
+  --glow: 0 0 18px rgba(42,157,143,0.25), 0 0 36px rgba(244,162,97,0.25);
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial;
+  color:var(--ink);
+  /* Replace deep-space background gradients with airy daytime gradients */
+  background:
+    radial-gradient(1200px 600px at 80% -10%, rgba(42,157,143,0.15), transparent 60%),
+    radial-gradient(900px 500px at 20% 110%, rgba(244,162,97,0.12), transparent 60%),
+    linear-gradient(180deg, var(--bg), var(--bg2) 60%);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* Sparkly starfield */
+.stars, .twinkles{
+  position:fixed; inset:0; pointer-events:none; z-index:-1;
+  background-repeat:repeat;
+}
+.stars{
+  /* Lighten the starfield for a daytime sparkle */
+  background-image: radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.4) 50%, transparent 51%),
+                    radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.3) 50%, transparent 51%),
+                    radial-gradient(1px 1px at 70px 150px, rgba(255,255,255,0.5) 50%, transparent 51%);
+  animation: drift 120s linear infinite;
+  opacity:0.4;
+}
+.twinkles{
+  /* Softer twinkles for daytime */
+  background-image: radial-gradient(2px 2px at 50px 60px, rgba(255,255,255,0.7) 50%, transparent 51%),
+                    radial-gradient(1.5px 1.5px at 160px 100px, rgba(255,255,255,0.6) 50%, transparent 51%),
+                    radial-gradient(1.5px 1.5px at 260px 200px, rgba(255,255,255,0.6) 50%, transparent 51%);
+  animation: twinkle 3s ease-in-out infinite;
+  mix-blend-mode: screen;
+  opacity:0.6;
+}
+@keyframes drift{from{transform:translateY(0)}to{transform:translateY(-200px)}}
+@keyframes twinkle{0%,100%{opacity:0.3}50%{opacity:0.9}}
+
+/* Daytime clouds drifting across the sky */
+.clouds{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-2;
+  background-image: url('new_clouds.png');
+  background-repeat: repeat-x;
+  background-size: cover;
+  opacity:0.55;
+  animation: cloudsMove 90s linear infinite;
+}
+@keyframes cloudsMove{
+  from{ background-position: 0 0; }
+  to{ background-position: -2000px 0; }
+}
+
+.container{max-width:1100px;margin:0 auto;padding:28px}
+.header{
+  display:flex; align-items:center; gap:14px; margin-bottom:18px;
+  perspective:800px;
+}
+.logo{
+  width:56px;height:56px;border-radius:14px;
+  background: radial-gradient(circle at 30% 30%, var(--honey), #ffd07b 40%, #e76f51 75%);
+  box-shadow: 0 10px 30px rgba(255,209,102,0.35), inset 0 2px 8px rgba(255,255,255,0.35);
+  position:relative; transform-style:preserve-3d;
+}
+.logo:before{
+  content:"✈"; position:absolute; inset:0; display:grid; place-items:center;
+  font-size:28px; filter: drop-shadow(0 0 6px rgba(255,255,255,0.8));
+  transform: translateZ(20px);
+}
+.title-wrap h1{
+  margin:0; font-size:32px; letter-spacing:0.5px;
+  background: linear-gradient(90deg, var(--aqua), var(--mag), var(--cyan), var(--vio));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  text-shadow: 0 0 12px rgba(100,255,218,0.35);
+}
+.subtitle{margin:4px 0 0 0; color:var(--muted)}
+
+.deck{
+  display:grid; gap:16px;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 900px){
+  .deck{ grid-template-columns: 1fr 1fr; }
+}
+.card{
+  /* Bright translucent card with soft drop shadows */
+  background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.3));
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:16px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.2), var(--glow);
+  transform-style:preserve-3d;
+  transition: transform .3s ease, box-shadow .3s ease;
+  position:relative; overflow:hidden;
+}
+.card:hover{
+  transform: rotateX(6deg) rotateY(-6deg) translateY(-2px);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.25), 0 0 40px rgba(42,157,143,0.2);
+}
+.card:after{
+  content:"";
+  position:absolute;
+  inset:-1px;
+  border-radius:18px;
+  background: radial-gradient(800px 200px at -20% -20%, rgba(255,255,255,0.15), transparent 60%);
+  pointer-events:none;
+}
+.card h2{
+  margin:0 0 10px 0; font-size:22px;
+  text-shadow: 0 0 10px rgba(100,255,218,0.25);
+  display:flex; align-items:center; gap:10px;
+}
+.badge{
+  display:inline-flex; align-items:center; gap:6px;
+  padding:6px 10px; border-radius:999px; font-size:12px;
+  background: rgba(42,157,143,0.15);
+  border:1px dashed rgba(42,157,143,0.35);
+  box-shadow: inset 0 0 12px rgba(42,157,143,0.15);
+}
+.badge:before{ content:"🛂"; } /* passport stamp vibe */
+
+.kpi{
+  display:grid; gap:12px; grid-template-columns: repeat(auto-fit, minmax(160px,1fr));
+  margin:12px 0 4px 0;
+}
+.kpi .tile{
+  padding:12px;
+  border-radius:14px;
+  background: linear-gradient(160deg, rgba(255,255,255,0.5), rgba(244,162,97,0.15));
+  border:1px solid var(--border);
+  box-shadow: 0 6px 22px rgba(0,0,0,0.15), inset 0 0 14px rgba(42,157,143,0.08);
+}
+.kpi .label{color:var(--muted); font-size:12px}
+.kpi .value{font-size:22px; font-weight:800; letter-spacing:0.3px}
+
+.table-wrap{ overflow:auto; border-radius:12px; border:1px solid var(--border); box-shadow: var(--glow); }
+.glow-table{ width:100%; border-collapse:collapse; font-size:14px; }
+.glow-table thead th{
+  text-align:left; padding:10px 12px;
+  background: linear-gradient(90deg, rgba(42,157,143,0.20), rgba(244,162,97,0.20));
+  position:sticky; top:0; z-index:1;
+  border-bottom:1px solid var(--border);
+  backdrop-filter: blur(2px);
+}
+.glow-table tbody td{ padding:10px 12px; border-bottom:1px solid var(--border); }
+.glow-table tbody tr{ transition: background .2s ease, transform .2s ease; }
+.glow-table tbody tr:hover{ background: rgba(42,157,143,0.08); transform: translateZ(10px); }
+.winner-row{ background: linear-gradient(90deg, rgba(42,157,143,0.18), rgba(244,162,97,0.18)); }
+
+.footer{ margin-top:18px; color:var(--muted); font-size:12px; text-align:center; }
+
+/* Floating travel elements */
+.floaters{
+  position:fixed; right:12px; bottom:12px; pointer-events:none; opacity:0.85;
+  display:flex; gap:8px; filter: drop-shadow(0 8px 20px rgba(0,0,0,0.35));
+}
+.floater{
+  width:42px;height:42px;border-radius:50%;
+  display:grid;place-items:center;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.4), rgba(255,255,255,0.15));
+  border:1px solid var(--border);
+  animation: bob 4s ease-in-out infinite;
+}
+.floater:nth-child(2){ animation-delay:.6s }
+.floater:nth-child(3){ animation-delay:1.2s }
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+</style>
 </head>
 <body>
   <div class="stars"></div>
   <div class="twinkles"></div>
+  <!-- Soft moving clouds layer for daytime ambiance -->
+  <div class="clouds"></div>
   <div class="container">
-    <h1>Seed Trainers Leaderboard</h1>
-    <div class="card" id="guild-card">
-      <h2>Navigators Guild</h2>
-      <table id="guild-table">
-        <thead>
-          <tr><th>Rank</th><th>Name</th><th>Completed</th><th>Score</th><th>Weighted</th></tr>
-        </thead>
-        <tbody></tbody>
+    <div class="header">
+      <div class="logo" title="The Travel Agency — Training"></div>
+      <div class="title-wrap">
+        <h1>Seed Trainers ✦ Flight Deck</h1>
+        <p class="subtitle">Weighted Score = (Total Completed × Average Score) ÷ 100 · Guild threshold: <strong>115</strong></p>
+      </div>
+    </div>
+
+    <div class="deck">
+      <section class="card">
+        <h2>🧭 Navigators Guild <span class="badge">Completed All Available Courses</span></h2>
+        <p class='muted'>No members yet. The <strong>Navigators Guild</strong> requires <strong>115</strong> completed courses.</p>
+        <div class="kpi">
+          <div class="tile">
+            <div class="label">Total Learners</div>
+            <div class="value">46</div>
+          </div>
+          <div class="tile">
+            <div class="label">Guild Members</div>
+            <div class="value">0</div>
+          </div>
+          <div class="tile">
+            <div class="label">Max Courses Available</div>
+            <div class="value">115</div>
+          </div>
+          <div class="tile">
+            <div class="label">Top Weighted Score</div>
+            <div class="value">103.74</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>✈ Leaderboard <span class="badge">Sorted by Weighted Score</span></h2>
+        
+    <div class="table-wrap">
+      <table class="glow-table">
+        <thead><tr><th>Rank</th><th>Learner Name</th><th>Total Completed</th><th>Average Score</th><th>Weighted Score</th></tr></thead>
+        <tbody>
+          <tr class=''><td>1</td><td>Jean-Luc Folias</td><td>114</td><td>91</td><td>103.74</td></tr><tr class=''><td>2</td><td>Colbi Kubo</td><td>96</td><td>94</td><td>90.24</td></tr><tr class=''><td>3</td><td>Jeff McHale</td><td>79</td><td>94</td><td>74.26</td></tr><tr class=''><td>4</td><td>Ariana Witherspoon</td><td>75</td><td>94</td><td>70.50</td></tr><tr class=''><td>5</td><td>Rajah Chopra</td><td>72</td><td>93</td><td>66.96</td></tr><tr class=''><td>6</td><td>Marco Rabanal</td><td>72</td><td>91</td><td>65.52</td></tr><tr class=''><td>7</td><td>Anthony Bonny</td><td>69</td><td>93</td><td>64.17</td></tr><tr class=''><td>8</td><td>Jackson Wise</td><td>62</td><td>95</td><td>58.90</td></tr><tr class=''><td>9</td><td>Josiah Anderson</td><td>59</td><td>92</td><td>54.28</td></tr><tr class=''><td>10</td><td>Sam Feldman</td><td>57</td><td>93</td><td>53.01</td></tr><tr class=''><td>11</td><td>George Allen</td><td>48</td><td>89</td><td>42.72</td></tr><tr class=''><td>12</td><td>Mikayla  Jackman</td><td>48</td><td>89</td><td>42.72</td></tr><tr class=''><td>13</td><td>Milton Ramos</td><td>41</td><td>92</td><td>37.72</td></tr><tr class=''><td>14</td><td>Mason Matos</td><td>39</td><td>95</td><td>37.05</td></tr><tr class=''><td>15</td><td>Keith Ollivierre</td><td>40</td><td>92</td><td>36.80</td></tr><tr class=''><td>16</td><td>Sadie Wood</td><td>37</td><td>95</td><td>35.15</td></tr><tr class=''><td>17</td><td>Alex Santiago</td><td>37</td><td>91</td><td>33.67</td></tr><tr class=''><td>18</td><td>Shaquan  Murray</td><td>34</td><td>90</td><td>30.60</td></tr><tr class=''><td>19</td><td>Edwin De Leon</td><td>31</td><td>93</td><td>28.83</td></tr><tr class=''><td>20</td><td>Precious Yates</td><td>33</td><td>85</td><td>28.05</td></tr><tr class=''><td>21</td><td>Jude Chua</td><td>29</td><td>93</td><td>26.97</td></tr><tr class=''><td>22</td><td>Omari Prescott</td><td>29</td><td>91</td><td>26.39</td></tr><tr class=''><td>23</td><td>Bruce Torres</td><td>28</td><td>93</td><td>26.04</td></tr><tr class=''><td>24</td><td>Daniel Savillo</td><td>28</td><td>93</td><td>26.04</td></tr><tr class=''><td>25</td><td>Amir Chase</td><td>28</td><td>90</td><td>25.20</td></tr><tr class=''><td>26</td><td>Mark Muniz</td><td>27</td><td>93</td><td>25.11</td></tr><tr class=''><td>27</td><td>Melvin  Tineo</td><td>26</td><td>90</td><td>23.40</td></tr><tr class=''><td>28</td><td>Chelsea Sanchez</td><td>25</td><td>93</td><td>23.25</td></tr><tr class=''><td>29</td><td>Juan Rojas</td><td>25</td><td>91</td><td>22.75</td></tr><tr class=''><td>30</td><td>Scott Goddard</td><td>25</td><td>91</td><td>22.75</td></tr><tr class=''><td>31</td><td>Allen Parker</td><td>24</td><td>92</td><td>22.08</td></tr><tr class=''><td>32</td><td>Rashae Black</td><td>24</td><td>92</td><td>22.08</td></tr><tr class=''><td>33</td><td>Michele Papaleo</td><td>22</td><td>92</td><td>20.24</td></tr><tr class=''><td>34</td><td>Kaleo Grant</td><td>22</td><td>90</td><td>19.80</td></tr><tr class=''><td>35</td><td>Andrew Figueroa</td><td>22</td><td>87</td><td>19.14</td></tr><tr class=''><td>36</td><td>Jalen Johnson</td><td>21</td><td>90</td><td>18.90</td></tr><tr class=''><td>37</td><td>Brandon Johnson</td><td>22</td><td>84</td><td>18.48</td></tr><tr class=''><td>38</td><td>Sheree Lewis</td><td>19</td><td>91</td><td>17.29</td></tr><tr class=''><td>39</td><td>Kai Jackson</td><td>19</td><td>87</td><td>16.53</td></tr><tr class=''><td>40</td><td>Lori  Walker</td><td>17</td><td>90</td><td>15.30</td></tr><tr class=''><td>41</td><td>Matthew Fraser</td><td>16</td><td>94</td><td>15.04</td></tr><tr class=''><td>42</td><td>Gabriel Reed</td><td>12</td><td>91</td><td>10.92</td></tr><tr class=''><td>43</td><td>Randy Arias</td><td>12</td><td>90</td><td>10.80</td></tr><tr class=''><td>44</td><td>Kevin Yu</td><td>7</td><td>92</td><td>6.44</td></tr><tr class=''><td>45</td><td>Jamil Jordan</td><td>9</td><td>69</td><td>6.21</td></tr><tr class=''><td>46</td><td>Taziyah Lawrence</td><td>5</td><td>91</td><td>4.55</td></tr>
+        </tbody>
       </table>
     </div>
-    <div class="card" id="leaderboard-card">
-      <h2>Leaderboard</h2>
-      <table id="leaderboard-table">
-        <thead>
-          <tr><th>Rank</th><th>Name</th><th>Completed</th><th>Score</th><th>Weighted</th></tr>
-        </thead>
-        <tbody></tbody>
-      </table>
+    
+        <p class="subtitle">Rows will glow when a learner qualifies for the Navigators Guild.</p>
+      </section>
+    </div>
+
+    <div class="footer">
+      <p>Source: <code>Learner Report.csv</code> • Generated at 2025-09-05 14:56:52</p>
     </div>
   </div>
+
+  <div class="floaters">
+    <div class="floater" title="Boarding Pass">🎫</div>
+    <div class="floater" title="Compass">🧭</div>
+    <div class="floater" title="Luggage">🧳</div>
+  </div>
+
   <script>
-    const learners = [
-      {name:"Alex Santiago", completed:37, score:91},
-      {name:"Allen Parker", completed:24, score:92},
-      {name:"Amir Chase", completed:28, score:90},
-      {name:"Andrew Figueroa", completed:22, score:87},
-      {name:"Anthony Bonny", completed:69, score:93},
-      {name:"Ariana Witherspoon", completed:75, score:94},
-      {name:"Brandon Johnson", completed:22, score:84},
-      {name:"Bruce Torres", completed:28, score:93},
-      {name:"Chelsea Sanchez", completed:25, score:93},
-      {name:"Colbi Kubo", completed:96, score:94},
-      {name:"Daniel Savillo", completed:28, score:93},
-      {name:"Edwin De Leon", completed:31, score:93},
-      {name:"Gabriel Reed", completed:12, score:91},
-      {name:"George Allen", completed:48, score:89},
-      {name:"Jackson Wise", completed:62, score:95},
-      {name:"Jalen Johnson", completed:21, score:90},
-      {name:"Jamil Jordan", completed:9, score:69},
-      {name:"Jean-Luc Folias", completed:114, score:91},
-      {name:"Jeff McHale", completed:79, score:94},
-      {name:"Josiah Anderson", completed:59, score:92},
-      {name:"Juan Rojas", completed:25, score:91},
-      {name:"Jude Chua", completed:29, score:93},
-      {name:"Kai Jackson", completed:19, score:87},
-      {name:"Kaleo Grant", completed:22, score:90},
-      {name:"Keith Ollivierre", completed:40, score:92},
-      {name:"Kevin Yu", completed:7, score:92},
-      {name:"Lori  Walker", completed:17, score:90},
-      {name:"Marco Rabanal", completed:72, score:91},
-      {name:"Mark Muniz", completed:27, score:93},
-      {name:"Mason Matos", completed:39, score:95},
-      {name:"Matthew Fraser", completed:16, score:94},
-      {name:"Melvin  Tineo", completed:26, score:90},
-      {name:"Michele Papaleo", completed:22, score:92},
-      {name:"Mikayla  Jackman", completed:48, score:89},
-      {name:"Milton Ramos", completed:41, score:92},
-      {name:"Omari Prescott", completed:29, score:91},
-      {name:"Precious Yates", completed:33, score:85},
-      {name:"Rajah Chopra", completed:72, score:93},
-      {name:"Randy Arias", completed:12, score:90},
-      {name:"Rashae Black", completed:24, score:92},
-      {name:"Sadie Wood", completed:37, score:95},
-      {name:"Sam Feldman", completed:57, score:93},
-      {name:"Scott Goddard", completed:25, score:91},
-      {name:"Shaquan  Murray", completed:34, score:90},
-      {name:"Sheree Lewis", completed:19, score:91},
-      {name:"Taziyah Lawrence", completed:5, score:91},
-    ];
-    const threshold = 115;
-    learners.forEach(l => {
-      l.weighted = (l.completed * l.score) / 100;
-    });
-    learners.sort((a, b) => b.weighted - a.weighted || b.completed - a.completed);
-    const guild = learners.filter(l => l.completed >= threshold);
-    function renderTable(rows, tableId) {
-      const tbody = document.querySelector(`#${tableId} tbody`);
-      rows.forEach((learner, idx) => {
-        const tr = document.createElement('tr');
-        if (learner.completed >= threshold) tr.classList.add('winner');
-        tr.innerHTML =
-          `<td>${idx + 1}</td>` +
-          `<td>${learner.name}</td>` +
-          `<td>${learner.completed}</td>` +
-          `<td>${learner.score}</td>` +
-          `<td>${learner.weighted.toFixed(2)}</td>`;
-        tbody.appendChild(tr);
-      });
-    }
-    renderTable(guild, 'guild-table');
-    renderTable(learners, 'leaderboard-table');
-  </script>
+// Subtle 3D tilt based on mouse position
+document.querySelectorAll('.card').forEach(card => {
+  card.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const rx = ((y / rect.height) - 0.5) * -10;
+    const ry = ((x / rect.width) - 0.5) * 10;
+    card.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg) translateY(-2px)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = '';
+  });
+});
+</script>
 </body>
 </html>
