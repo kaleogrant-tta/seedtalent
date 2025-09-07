@@ -171,7 +171,11 @@ body{
 .glow-table tbody td{ padding:10px 12px; border-bottom:1px solid var(--border); }
 .glow-table tbody tr{ transition: background .2s ease, transform .2s ease; }
 .glow-table tbody tr:hover{ background: rgba(42,157,143,0.08); transform: translateZ(10px); }
-.winner-row{ background: linear-gradient(90deg, rgba(42,157,143,0.18), rgba(244,162,97,0.18)); }
+.winner-row{
+  /* Subtle highlight with gold border for Navigators Guild members */
+  background: linear-gradient(90deg, rgba(244,162,97,0.15), rgba(244,162,97,0.15));
+  box-shadow: 0 0 0 2px var(--honey) inset;
+}
 
 .footer{ margin-top:18px; color:var(--muted); font-size:12px; text-align:center; }
 
@@ -191,10 +195,30 @@ body{
 .floater:nth-child(3){ animation-delay:1.2s }
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 
-.badge-small{width:16px;height:16px;vertical-align:middle;margin-right:6px;}
+.badge-small{width:16px;height:16px;vertical-align:middle;margin-right:4px;}
 .guild-icon{text-align:center;margin-top:12px;}
 .guild-icon img{width:80px;height:auto;}
 
+
+.winner-name{display:inline-block;padding:2px 4px;border:2px solid var(--honey);border-radius:4px;background:rgba(255,255,255,0.6);}
+.badge-small{width:16px;height:16px;vertical-align:middle;margin-right:4px;}
+.winner-row{background: linear-gradient(90deg, rgba(244,162,97,0.15), rgba(244,162,97,0.15));box-shadow: 0 0 0 2px var(--honey) inset;}
+@media (max-width: 600px){
+  .badge-small{width:12px;height:12px;margin-right:3px;}
+  .winner-name{font-size:12px;padding:1px 3px;border-width:1.5px;}
+  .glow-table thead th, .glow-table tbody td{font-size:12px;padding:8px;}
+  .guild-icon img{width:60px;}
+}
+
+
+/* Mobile optimizations */
+@media (max-width: 600px){
+  .badge-small{width:12px;height:12px;margin-right:3px;}
+  .glow-table thead th, .glow-table tbody td{font-size:12px;padding:8px;}
+  .guild-icon img{width:60px;}
+  /* Thinner gold border on mobile */
+  .winner-row{box-shadow: 0 0 0 1.5px var(--honey) inset;}
+}
 </style>
 </head>
 <body>
@@ -213,7 +237,7 @@ body{
 
     <div class="deck">
       <section class="card">
-        <h2>🧭 Navigators Guild <span class="badge">Completed All Available Courses</span></h2>
+        <h2>🧭 Navigators Guild <span class="badge">Completed All Available Courses</h2>
         <p class='muted'><strong>2</strong> members (Colbi Kubo, Jean-Luc Folias) have qualified for the Navigators Guild. The Navigators Guild requires 103 completed courses.</p>
         <div class="kpi">
           <div class="tile">
@@ -237,12 +261,12 @@ body{
   </section>
 
       <section class="card">
-        <h2>✈ Leaderboard <span class="badge">Sorted by Weighted Score</span></h2>
+        <h2>✈ Leaderboard <span class="badge">Sorted by Weighted Score</h2>
         
     <div class="table-wrap">
       <table class="glow-table">
         <thead><tr><th>Rank</th><th>Learner Name</th><th>Total Completed</th><th>Average Score</th><th>Weighted Score</th></tr></thead>
-        <tbody><tr class='winner-row'><td>1</td><td><img src='guild_badge.png' alt='' class='badge-small'> Jean-Luc Folias</td><td>114</td><td>91</td><td>137.59</td></tr><tr class='winner-row'><td>2</td><td><img src='guild_badge.png' alt='' class='badge-small'> Colbi Kubo</td><td>103</td><td>92</td><td>124.76</td></tr><tr class=''><td>3</td><td>Jeff McHale</td><td>79</td><td>94</td><td>99.01</td></tr><tr class=''><td>4</td><td>Jackson Wise</td><td>73</td><td>94</td><td>91.72</td></tr><tr class=''><td>5</td><td>Ariana Witherspoon</td><td>75</td><td>94</td><td>91.05</td></tr><tr class=''><td>6</td><td>Rajah Chopra</td><td>72</td><td>93</td><td>85.26</td></tr><tr class=''><td>7</td><td>Marco Rabanal</td><td>72</td><td>91</td><td>83.17</td></tr><tr class=''><td>8</td><td>Anthony Bonny</td><td>69</td><td>93</td><td>82.17</td></tr><tr class=''><td>9</td><td>Sam Feldman</td><td>59</td><td>94</td><td>72.21</td></tr><tr class=''><td>10</td><td>Josiah Anderson</td><td>59</td><td>92</td><td>71.48</td></tr><tr class=''><td>11</td><td>George Allen</td><td>48</td><td>89</td><td>57.97</td></tr><tr class=''><td>12</td><td>Mikayla  Jackman</td><td>48</td><td>89</td><td>56.22</td></tr><tr class=''><td>13</td><td>Milton Ramos</td><td>41</td><td>92</td><td>51.47</td></tr><tr class=''><td>14</td><td>Mason Matos</td><td>39</td><td>95</td><td>50.30</td></tr><tr class=''><td>15</td><td>Alex Santiago</td><td>41</td><td>91</td><td>49.56</td></tr><tr class=''><td>16</td><td>Sadie Wood</td><td>39</td><td>95</td><td>49.10</td></tr><tr class=''><td>17</td><td>Keith Ollivierre</td><td>40</td><td>92</td><td>46.05</td></tr><tr class=''><td>18</td><td>Shaquan  Murray</td><td>34</td><td>90</td><td>43.60</td></tr><tr class=''><td>19</td><td>Edwin De Leon</td><td>31</td><td>93</td><td>39.08</td></tr><tr class=''><td>20</td><td>Precious Yates</td><td>33</td><td>85</td><td>37.55</td></tr><tr class=''><td>21</td><td>Jude Chua</td><td>29</td><td>93</td><td>37.47</td></tr><tr class=''><td>22</td><td>Omari Prescott</td><td>29</td><td>91</td><td>36.39</td></tr><tr class=''><td>23</td><td>Bruce Torres</td><td>28</td><td>93</td><td>36.29</td></tr><tr class=''><td>24</td><td>Daniel Savillo</td><td>28</td><td>93</td><td>36.04</td></tr><tr class=''><td>25</td><td>Mark Muniz</td><td>27</td><td>93</td><td>34.61</td></tr><tr class=''><td>26</td><td>Amir Chase</td><td>28</td><td>90</td><td>33.45</td></tr><tr class=''><td>27</td><td>Chelsea Sanchez</td><td>25</td><td>93</td><td>33.25</td></tr><tr class=''><td>28</td><td>Juan Rojas</td><td>25</td><td>91</td><td>32.00</td></tr><tr class=''><td>29</td><td>Melvin  Tineo</td><td>26</td><td>90</td><td>31.90</td></tr><tr class=''><td>30</td><td>Scott Goddard</td><td>25</td><td>91</td><td>31.25</td></tr><tr class=''><td>31</td><td>Rashae Black</td><td>24</td><td>92</td><td>31.08</td></tr><tr class=''><td>32</td><td>Allen Parker</td><td>24</td><td>92</td><td>30.58</td></tr><tr class=''><td>33</td><td>Michele Papaleo</td><td>22</td><td>92</td><td>28.99</td></tr><tr class=''><td>34</td><td>Kaleo Grant</td><td>22</td><td>90</td><td>28.30</td></tr><tr class=''><td>35</td><td>Jalen Johnson</td><td>21</td><td>90</td><td>27.65</td></tr><tr class=''><td>36</td><td>Brandon Johnson</td><td>22</td><td>84</td><td>26.48</td></tr><tr class=''><td>37</td><td>Andrew Figueroa</td><td>22</td><td>87</td><td>25.39</td></tr><tr class=''><td>38</td><td>Kai Jackson</td><td>19</td><td>87</td><td>24.53</td></tr><tr class=''><td>39</td><td>Sheree Lewis</td><td>19</td><td>91</td><td>24.04</td></tr><tr class=''><td>40</td><td>Lori  Walker</td><td>17</td><td>90</td><td>22.55</td></tr><tr class=''><td>41</td><td>Matthew Fraser</td><td>16</td><td>94</td><td>20.79</td></tr><tr class=''><td>42</td><td>Gabriel Reed</td><td>12</td><td>91</td><td>17.17</td></tr><tr class=''><td>43</td><td>Kevin Yu</td><td>7</td><td>92</td><td>12.44</td></tr><tr class=''><td>44</td><td>Randy Arias</td><td>12</td><td>90</td><td>11.55</td></tr><tr class=''><td>45</td><td>Jamil Jordan</td><td>9</td><td>69</td><td>9.21</td></tr><tr class=''><td>46</td><td>Taziyah Lawrence</td><td>5</td><td>91</td><td>8.30</td></tr></tbody>
+        <tbody><tr class='winner-row'><td><img src='guild_badge.png' alt='' class='badge-small'> 1</td><td>Jean-Luc Folias</td><td>114</td><td>91</td><td>137.59</td></tr><tr class='winner-row'><td><img src='guild_badge.png' alt='' class='badge-small'> 2</td><td>Colbi Kubo</td><td>103</td><td>92</td><td>124.76</td></tr><tr class=''><td>3</td><td>Jeff McHale</td><td>79</td><td>94</td><td>99.01</td></tr><tr class=''><td>4</td><td>Jackson Wise</td><td>73</td><td>94</td><td>91.72</td></tr><tr class=''><td>5</td><td>Ariana Witherspoon</td><td>75</td><td>94</td><td>91.05</td></tr><tr class=''><td>6</td><td>Rajah Chopra</td><td>72</td><td>93</td><td>85.26</td></tr><tr class=''><td>7</td><td>Marco Rabanal</td><td>72</td><td>91</td><td>83.17</td></tr><tr class=''><td>8</td><td>Anthony Bonny</td><td>69</td><td>93</td><td>82.17</td></tr><tr class=''><td>9</td><td>Sam Feldman</td><td>59</td><td>94</td><td>72.21</td></tr><tr class=''><td>10</td><td>Josiah Anderson</td><td>59</td><td>92</td><td>71.48</td></tr><tr class=''><td>11</td><td>George Allen</td><td>48</td><td>89</td><td>57.97</td></tr><tr class=''><td>12</td><td>Mikayla  Jackman</td><td>48</td><td>89</td><td>56.22</td></tr><tr class=''><td>13</td><td>Milton Ramos</td><td>41</td><td>92</td><td>51.47</td></tr><tr class=''><td>14</td><td>Mason Matos</td><td>39</td><td>95</td><td>50.30</td></tr><tr class=''><td>15</td><td>Alex Santiago</td><td>41</td><td>91</td><td>49.56</td></tr><tr class=''><td>16</td><td>Sadie Wood</td><td>39</td><td>95</td><td>49.10</td></tr><tr class=''><td>17</td><td>Keith Ollivierre</td><td>40</td><td>92</td><td>46.05</td></tr><tr class=''><td>18</td><td>Shaquan  Murray</td><td>34</td><td>90</td><td>43.60</td></tr><tr class=''><td>19</td><td>Edwin De Leon</td><td>31</td><td>93</td><td>39.08</td></tr><tr class=''><td>20</td><td>Precious Yates</td><td>33</td><td>85</td><td>37.55</td></tr><tr class=''><td>21</td><td>Jude Chua</td><td>29</td><td>93</td><td>37.47</td></tr><tr class=''><td>22</td><td>Omari Prescott</td><td>29</td><td>91</td><td>36.39</td></tr><tr class=''><td>23</td><td>Bruce Torres</td><td>28</td><td>93</td><td>36.29</td></tr><tr class=''><td>24</td><td>Daniel Savillo</td><td>28</td><td>93</td><td>36.04</td></tr><tr class=''><td>25</td><td>Mark Muniz</td><td>27</td><td>93</td><td>34.61</td></tr><tr class=''><td>26</td><td>Amir Chase</td><td>28</td><td>90</td><td>33.45</td></tr><tr class=''><td>27</td><td>Chelsea Sanchez</td><td>25</td><td>93</td><td>33.25</td></tr><tr class=''><td>28</td><td>Juan Rojas</td><td>25</td><td>91</td><td>32.00</td></tr><tr class=''><td>29</td><td>Melvin  Tineo</td><td>26</td><td>90</td><td>31.90</td></tr><tr class=''><td>30</td><td>Scott Goddard</td><td>25</td><td>91</td><td>31.25</td></tr><tr class=''><td>31</td><td>Rashae Black</td><td>24</td><td>92</td><td>31.08</td></tr><tr class=''><td>32</td><td>Allen Parker</td><td>24</td><td>92</td><td>30.58</td></tr><tr class=''><td>33</td><td>Michele Papaleo</td><td>22</td><td>92</td><td>28.99</td></tr><tr class=''><td>34</td><td>Kaleo Grant</td><td>22</td><td>90</td><td>28.30</td></tr><tr class=''><td>35</td><td>Jalen Johnson</td><td>21</td><td>90</td><td>27.65</td></tr><tr class=''><td>36</td><td>Brandon Johnson</td><td>22</td><td>84</td><td>26.48</td></tr><tr class=''><td>37</td><td>Andrew Figueroa</td><td>22</td><td>87</td><td>25.39</td></tr><tr class=''><td>38</td><td>Kai Jackson</td><td>19</td><td>87</td><td>24.53</td></tr><tr class=''><td>39</td><td>Sheree Lewis</td><td>19</td><td>91</td><td>24.04</td></tr><tr class=''><td>40</td><td>Lori  Walker</td><td>17</td><td>90</td><td>22.55</td></tr><tr class=''><td>41</td><td>Matthew Fraser</td><td>16</td><td>94</td><td>20.79</td></tr><tr class=''><td>42</td><td>Gabriel Reed</td><td>12</td><td>91</td><td>17.17</td></tr><tr class=''><td>43</td><td>Kevin Yu</td><td>7</td><td>92</td><td>12.44</td></tr><tr class=''><td>44</td><td>Randy Arias</td><td>12</td><td>90</td><td>11.55</td></tr><tr class=''><td>45</td><td>Jamil Jordan</td><td>9</td><td>69</td><td>9.21</td></tr><tr class=''><td>46</td><td>Taziyah Lawrence</td><td>5</td><td>91</td><td>8.30</td></tr></tbody>
       </table>
     </div>
     
@@ -251,7 +275,7 @@ body{
     </div>
 
     <div class="footer">
-      <p>Source: <code>Learner Report.csv</code> • Generated at 2025-09-07 14:37:02</p>
+      <p>Source: <code>Learner Report.csv</code> • Generated at 2025-09-07 15:04:00</p>
     </div>
   </div>
 
