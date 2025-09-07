@@ -157,31 +157,31 @@ layout: none
     </section>
     <!-- Leaderboard Table -->
    {% if site.data.learner_report %}
-  {% assign rows = site.data.learner_report | sort: "Weighted Score" | reverse %}
-  <div class="card">
-    <table>
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Learner</th>
-          <th>Total Completed</th>
-          <th>Average Score</th>
-          <th>Weighted Score</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for r in rows %}
-        <tr{% if r["Total Completed"] >= site.data.guild.qualifying_completed %} class="winner-row"{% endif %}>
-          <td class="rank">{{ forloop.index }}</td>
-          <td>{{ r["Learner Name"] }}</td>
-          <td class="rank">{{ r["Total Completed"] }}</td>
-          <td class="rank">{{ r["Average Score"] }}</td>
-          <td class="rank">{{ r["Weighted Score"] }}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-    <p class="muted">* Weighted Score = Total Completed × Average Score ÷ 100</p>
+{% assign rows = site.data.learner_report | sort: "Weighted Score" | reverse %}
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Learner</th>
+      <th>Total Completed</th>
+      <th>Average Score</th>
+      <th>Weighted Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for r in rows %}
+    <tr{% if r["Total Completed"] >= site.data.guild.qualifying_completed %} class="winner-row"{% endif %}>
+      <td class="rank">{{ forloop.index }}</td>
+      <td>{{ r["Learner Name"] }}</td>
+      <td class="rank">{{ r["Total Completed"] }}</td>
+      <td class="rank">{{ r["Average Score"] }}</td>
+      <td class="rank">{{ r["Weighted Score"] }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<p class="muted">* Weighted Score = Total Completed × Average Score ÷ 100</p>
+
   </div>
 {% else %}
   <div class="card">
