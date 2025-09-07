@@ -28,7 +28,7 @@ body{
   color:var(--ink);
   /* Replace deep-space background gradients with airy daytime gradients */
   background:
-    radial-gradient(1200px 600px at 80% -10%, rgba(42,157,143,0.15), transparent 60%),
+    radial-gradient(1250px 600px at 80% -10%, rgba(42,157,143,0.15), transparent 60%),
     radial-gradient(900px 500px at 20% 110%, rgba(244,162,97,0.12), transparent 60%),
     linear-gradient(180deg, var(--bg), var(--bg2) 60%);
   min-height:100vh;
@@ -45,19 +45,19 @@ body{
   background-image: radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.4) 50%, transparent 51%),
                     radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.3) 50%, transparent 51%),
                     radial-gradient(1px 1px at 70px 150px, rgba(255,255,255,0.5) 50%, transparent 51%);
-  animation: drift 120s linear infinite;
+  animation: drift 240s linear infinite;
   opacity:0.4;
 }
 .twinkles{
   /* Softer twinkles for daytime */
   background-image: radial-gradient(2px 2px at 50px 60px, rgba(255,255,255,0.7) 50%, transparent 51%),
                     radial-gradient(1.5px 1.5px at 160px 100px, rgba(255,255,255,0.6) 50%, transparent 51%),
-                    radial-gradient(1.5px 1.5px at 260px 200px, rgba(255,255,255,0.6) 50%, transparent 51%);
+                    radial-gradient(1.5px 1.5px at 260px 250px, rgba(255,255,255,0.6) 50%, transparent 51%);
   animation: twinkle 3s ease-in-out infinite;
   mix-blend-mode: screen;
   opacity:0.6;
 }
-@keyframes drift{from{transform:translateY(0)}to{transform:translateY(-200px)}}
+@keyframes drift{from{transform:translateY(0)}to{transform:translateY(-250px)}}
 @keyframes twinkle{0%,100%{opacity:0.3}50%{opacity:0.9}}
 
 /* Daytime clouds drifting across the sky */
@@ -129,7 +129,7 @@ body{
   position:absolute;
   inset:-1px;
   border-radius:18px;
-  background: radial-gradient(800px 200px at -20% -20%, rgba(255,255,255,0.15), transparent 60%);
+  background: radial-gradient(800px 250px at -20% -20%, rgba(255,255,255,0.15), transparent 60%);
   pointer-events:none;
 }
 .card h2{
@@ -199,7 +199,7 @@ body{
 .badge-small{width:16px;height:16px;vertical-align:middle;margin-right:4px;}
 /* Container for multiple guild badges */
 .guild-icons { text-align: center; margin-top: 12px; }
-.guild-icons img { width: 200px; height: auto; margin: 0 8px; }
+.guild-icons img { width: 250px; height: auto; margin: 0 8px; }
 
 /* Legacy single guild badge styling (no longer used) */
 .guild-icon { text-align: center; margin-top: 12px; }
