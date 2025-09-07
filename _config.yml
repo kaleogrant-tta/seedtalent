@@ -1,0 +1,22 @@
+title: Seed Trainers — Flight Deck
+description: Leaderboard & Navigators Guild
+url: https://kaleogrant-tta.github.io
+baseurl: /seedtalent
+
+# Use a simple Pages-supported theme so GitHub Pages can build the site without custom gems.
+theme: jekyll-theme-minimal
+
+# Plugins that are allowed on GitHub Pages. These generate proper SEO metadata and a sitemap.
+plugins:
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Set a default social preview image. If you add an image at assets/og.png the seo tag will pick it up.
+defaults:
+  - scope:
+      path: ""
+    values:
+      image: /seedtalent/assets/og.png
+
+# Optional: clean URL structure for future pages.
+permalink: /:title/

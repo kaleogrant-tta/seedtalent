@@ -1,0 +1,10 @@
+# YAML data used to populate the Navigators Guild section of the leaderboard.
+# You can update the values below to reflect changes without editing the HTML.
+
+qualifying_completed: 117
+max_courses_available: 119
+winners:
+  - name: "Colbi Kubo"
+    img: "/seedtalent/colbi_transparent.png"
+  - name: "Jean‑Luc Folias"
+    img: "/seedtalent/jeanluc_transparent.png"
