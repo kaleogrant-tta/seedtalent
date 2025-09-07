@@ -157,7 +157,7 @@ layout: none
     </section>
     <!-- Leaderboard Table -->
    {% if site.data.learner_report %}
-{% assign rows = site.data.learner_report | sort: "Weighted Score" | reverse %}
+{% assign rows = site.data.learner_report | sort: "Total Completed" | reverse %}
 <table>
   <thead>
     <tr>
