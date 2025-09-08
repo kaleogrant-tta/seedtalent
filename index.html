@@ -1,198 +1,302 @@
----
-layout: none
----
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>{{ site.title }}</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  {%- comment -%} Inject SEO tags (Open Graph, Twitter cards, meta description) {%- endcomment -%}
-  {% seo %}
-  <style>
-    /* Color variables for a bright, airy theme reminiscent of a flight deck during the day */
-    :root {
-      --bg: #e3f2fd;
-      --bg2: #cfe3fa;
-      --ink: #0a3057;
-      --muted: #557aa7;
-      --honey: #f4a261;
-      --aqua: #2a9d8f;
-      --mag: #e76f51;
-      --cyan: #2a9d8f;
-      --vio: #264653;
-      --border: rgba(10, 48, 87, 0.2);
-      --card: rgba(255, 255, 255, 0.8);
-      --glow: 0 0 18px rgba(42, 157, 143, 0.25), 0 0 36px rgba(244, 162, 97, 0.25);
-    }
-    * { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; }
-    body {
-      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial;
-      color: var(--ink);
-      background:
-        radial-gradient(1250px 600px at 80% -10%, rgba(42, 157, 143, 0.15), transparent 60%),
-        radial-gradient(900px 500px at 20% 110%, rgba(244, 162, 97, 0.12), transparent 60%),
-        linear-gradient(180deg, var(--bg), var(--bg2) 60%);
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-    .wrap { max-width: 1000px; margin: 0 auto; padding: 24px; }
-    header { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 16px; }
-    h1 { font-size: 32px; margin: 0; letter-spacing: 0.5px; }
-    h1 span {
-      background: linear-gradient(90deg, var(--aqua), var(--mag), var(--cyan), var(--vio));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      text-shadow: 0 0 12px rgba(100, 255, 218, 0.35);
-    }
-    .kpi { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 8px; }
-    .kpi .chip {
-      background: #f0f5fc;
-      border: 1px solid var(--border);
-      padding: 8px 12px;
-      border-radius: 999px;
-      font-size: 0.875rem;
-      white-space: nowrap;
-    }
-    .card-grid {
-      display: grid;
-      gap: 16px;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      margin: 24px 0;
-    }
-    .card {
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.3));
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 16px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2), var(--glow);
-      transform-style: preserve-3d;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-    .card:hover {
-      transform: rotateX(6deg) rotateY(-6deg) translateY(-2px);
-      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25), 0 0 40px rgba(42, 157, 143, 0.2);
-    }
-    .winner {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .winner img {
-      width: 52px;
-      height: 52px;
-      object-fit: contain;
-      image-rendering: -webkit-optimize-contrast;
-      filter: drop-shadow(0 6px 14px rgba(42, 157, 143, 0.2));
-    }
-    .guild-label {
-      font-weight: 700;
-      color: var(--honey);
-      font-size: 0.9rem;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      background: #f7fafd;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-      margin-top: 16px;
-    }
-    th, td {
-      padding: 10px 12px;
-      text-align: left;
-    }
-    thead th {
-      font-size: 0.75rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: var(--muted);
-      background: #eaf2fb;
-      position: sticky;
-      top: 0;
-    }
-    tbody tr:nth-child(odd) { background: #f2f8fd; }
-    tbody tr:hover { background: #e3effa; }
-    .rank { font-variant-numeric: tabular-nums; }
-    .muted { color: var(--muted); font-size: 0.8rem; margin-top: 4px; }
-    @media (max-width: 600px) {
-      h1 { font-size: 26px; }
-      .kpi .chip { font-size: 0.75rem; padding: 6px 10px; }
-      th, td { font-size: 0.8rem; padding: 8px; }
-      .winner img { width: 44px; height: 44px; }
-    }
-  </style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Seed Trainers — Leaderboard &amp; Navigators Guild</title>
+<style>
+:root{
+  /* Daytime color palette for a bright travel vibe */
+  --bg:#e3f2fd;       /* light sky blue */
+  --bg2:#cfe3fa;      /* paler sky tone */
+  --ink:#0a3057;      /* dark blue ink for text */
+  --muted:#557aa7;    /* muted slate blue for secondary text */
+  --honey:#f4a261;    /* warm honey accent */
+  --aqua:#2a9d8f;     /* deep aqua accent */
+  --mag:#e76f51;      /* soft coral-magenta */
+  --cyan:#2a9d8f;     /* reuse aqua for cyan */
+  --vio:#264653;      /* desaturated navy */
+  --border:rgba(10,48,87,0.2); /* subtle border for day */
+  --card:rgba(255,255,255,0.8); /* translucent white card backgrounds */
+  --glow: 0 0 18px rgba(42,157,143,0.25), 0 0 36px rgba(244,162,97,0.25);
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial;
+  color:var(--ink);
+  /* Replace deep-space background gradients with airy daytime gradients */
+  background:
+    radial-gradient(1200px 600px at 80% -10%, rgba(42,157,143,0.15), transparent 60%),
+    radial-gradient(900px 500px at 20% 110%, rgba(244,162,97,0.12), transparent 60%),
+    linear-gradient(180deg, var(--bg), var(--bg2) 60%);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* Sparkly starfield */
+.stars, .twinkles{
+  position:fixed; inset:0; pointer-events:none; z-index:-1;
+  background-repeat:repeat;
+}
+.stars{
+  /* Lighten the starfield for a daytime sparkle */
+  background-image: radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.4) 50%, transparent 51%),
+                    radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.3) 50%, transparent 51%),
+                    radial-gradient(1px 1px at 70px 150px, rgba(255,255,255,0.5) 50%, transparent 51%);
+  animation: drift 120s linear infinite;
+  opacity:0.4;
+}
+.twinkles{
+  /* Softer twinkles for daytime */
+  background-image: radial-gradient(2px 2px at 50px 60px, rgba(255,255,255,0.7) 50%, transparent 51%),
+                    radial-gradient(1.5px 1.5px at 160px 100px, rgba(255,255,255,0.6) 50%, transparent 51%),
+                    radial-gradient(1.5px 1.5px at 260px 200px, rgba(255,255,255,0.6) 50%, transparent 51%);
+  animation: twinkle 3s ease-in-out infinite;
+  mix-blend-mode: screen;
+  opacity:0.6;
+}
+@keyframes drift{from{transform:translateY(0)}to{transform:translateY(-200px)}}
+@keyframes twinkle{0%,100%{opacity:0.3}50%{opacity:0.9}}
+
+/* Daytime clouds drifting across the sky */
+.clouds{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-2;
+  background-image: url('new_clouds.png');
+  background-repeat: repeat-x;
+  background-size: cover;
+  opacity:0.55;
+  animation: cloudsMove 90s linear infinite;
+}
+@keyframes cloudsMove{
+  from{ background-position: 0 0; }
+  to{ background-position: -2000px 0; }
+}
+
+.container{max-width:1100px;margin:0 auto;padding:28px}
+.header{
+  display:flex; align-items:center; gap:14px; margin-bottom:18px;
+  perspective:800px;
+}
+.logo{
+  width:56px;height:56px;border-radius:14px;
+  background: radial-gradient(circle at 30% 30%, var(--honey), #ffd07b 40%, #e76f51 75%);
+  box-shadow: 0 10px 30px rgba(255,209,102,0.35), inset 0 2px 8px rgba(255,255,255,0.35);
+  position:relative; transform-style:preserve-3d;
+}
+.logo:before{
+  /* Removed plane emoji */
+  content:""; position:absolute; inset:0; display:grid; place-items:center;
+  font-size:28px; filter: drop-shadow(0 0 6px rgba(255,255,255,0.8));
+  transform: translateZ(20px);
+}
+.title-wrap h1{
+  margin:0; font-size:32px; letter-spacing:0.5px;
+  background: linear-gradient(90deg, var(--aqua), var(--mag), var(--cyan), var(--vio));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  text-shadow: 0 0 12px rgba(100,255,218,0.35);
+}
+.subtitle{margin:4px 0 0 0; color:var(--muted)}
+
+.deck{
+  display:grid; gap:16px;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 900px){
+  .deck{ grid-template-columns: 1fr 1fr; }
+}
+.card{
+  /* Bright translucent card with soft drop shadows */
+  background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.3));
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:16px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.2), var(--glow);
+  transform-style:preserve-3d;
+  transition: transform .3s ease, box-shadow .3s ease;
+  position:relative; overflow:hidden;
+}
+.card:hover{
+  transform: rotateX(6deg) rotateY(-6deg) translateY(-2px);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.25), 0 0 40px rgba(42,157,143,0.2);
+}
+.card:after{
+  content:"";
+  position:absolute;
+  inset:-1px;
+  border-radius:18px;
+  background: radial-gradient(800px 200px at -20% -20%, rgba(255,255,255,0.15), transparent 60%);
+  pointer-events:none;
+}
+.card h2{
+  margin:0 0 10px 0; font-size:22px;
+  text-shadow: 0 0 10px rgba(100,255,218,0.25);
+  display:flex; align-items:center; gap:10px;
+}
+.badge{
+  display:inline-flex; align-items:center; gap:6px;
+  padding:6px 10px; border-radius:999px; font-size:12px;
+  background: rgba(42,157,143,0.15);
+  border:1px dashed rgba(42,157,143,0.35);
+  box-shadow: inset 0 0 12px rgba(42,157,143,0.15);
+}
+.badge:before{ content:""; } /* passport stamp vibe removed */
+
+.kpi{
+  display:grid; gap:12px; grid-template-columns: repeat(auto-fit, minmax(160px,1fr));
+  margin:12px 0 4px 0;
+}
+.kpi .tile{
+  padding:12px;
+  border-radius:14px;
+  background: linear-gradient(160deg, rgba(255,255,255,0.5), rgba(244,162,97,0.15));
+  border:1px solid var(--border);
+  box-shadow: 0 6px 22px rgba(0,0,0,0.15), inset 0 0 14px rgba(42,157,143,0.08);
+}
+.kpi .label{color:var(--muted); font-size:12px}
+.kpi .value{font-size:22px; font-weight:800; letter-spacing:0.3px}
+
+.table-wrap{ overflow:auto; border-radius:12px; border:1px solid var(--border); box-shadow: var(--glow); }
+.glow-table{ width:100%; border-collapse:collapse; font-size:14px; }
+.glow-table thead th{
+  text-align:left; padding:10px 12px;
+  background: linear-gradient(90deg, rgba(42,157,143,0.20), rgba(244,162,97,0.20));
+  position:sticky; top:0; z-index:1;
+  border-bottom:1px solid var(--border);
+  backdrop-filter: blur(2px);
+}
+.glow-table tbody td{ padding:10px 12px; border-bottom:1px solid var(--border); }
+.glow-table tbody tr{ transition: background .2s ease, transform .2s ease; }
+.glow-table tbody tr:hover{ background: rgba(42,157,143,0.08); transform: translateZ(10px); }
+.winner-row{
+  /* Subtle highlight with gold border for Navigators Guild members */
+  background: linear-gradient(90deg, rgba(244,162,97,0.15), rgba(244,162,97,0.15));
+  box-shadow: 0 0 0 2px var(--honey) inset;
+}
+
+.footer{ margin-top:18px; color:var(--muted); font-size:12px; text-align:center; }
+
+/* Floating travel elements */
+.floaters{
+  position:fixed; right:12px; bottom:12px; pointer-events:none; opacity:0.85;
+  display:flex; gap:8px; filter: drop-shadow(0 8px 20px rgba(0,0,0,0.35));
+}
+.floater{
+  width:42px;height:42px;border-radius:50%;
+  display:grid;place-items:center;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.4), rgba(255,255,255,0.15));
+  border:1px solid var(--border);
+  animation: bob 4s ease-in-out infinite;
+}
+.floater:nth-child(2){ animation-delay:.6s }
+.floater:nth-child(3){ animation-delay:1.2s }
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+.badge-small{width:16px;height:16px;vertical-align:middle;margin-right:4px;}
+.guild-icon{text-align:center;margin-top:12px;}
+.guild-icon img{width:80px;height:auto;}
+
+
+.winner-name{display:inline-block;padding:2px 4px;border:2px solid var(--honey);border-radius:4px;background:rgba(255,255,255,0.6);}
+.badge-small{width:16px;height:16px;vertical-align:middle;margin-right:4px;}
+.winner-row{background: linear-gradient(90deg, rgba(244,162,97,0.15), rgba(244,162,97,0.15));box-shadow: 0 0 0 2px var(--honey) inset;}
+@media (max-width: 600px){
+  .badge-small{width:12px;height:12px;margin-right:3px;}
+  .winner-name{font-size:12px;padding:1px 3px;border-width:1.5px;}
+  .glow-table thead th, .glow-table tbody td{font-size:12px;padding:8px;}
+  .guild-icon img{width:60px;}
+}
+
+
+/* Mobile optimizations */
+@media (max-width: 600px){
+  .badge-small{width:12px;height:12px;margin-right:3px;}
+  .glow-table thead th, .glow-table tbody td{font-size:12px;padding:8px;}
+  .guild-icon img{width:60px;}
+  /* Thinner gold border on mobile */
+  .winner-row{box-shadow: 0 0 0 1.5px var(--honey) inset;}
+}
+
+/* Style for large winners images */
+.guild-images img{width:90%; max-width:500px; height:auto; margin:20px auto; display:block;}
+</style>
 </head>
 <body>
-  <div class="wrap">
-    {%- include nav.html -%}
-    <header>
-      <div>
-        <h1><span>{{ site.title }}</span></h1>
-        <div class="kpi">
-          <span class="chip">Qualifies at <strong>{{ site.data.guild.qualifying_completed }}</strong> completed</span>
-          <span class="chip">Max Courses Available: <strong>{{ site.data.guild.max_courses_available }}</strong></span>
-          <span class="chip">Last Build: <strong>{{ site.time | date: "%b %d, %Y %I:%M %p %Z" }}</strong></span>
-        </div>
-      </div>
-    </header>
-    <!-- Winners / Navigators Guild -->
-    <section class="card-grid">
-      {% for w in site.data.guild.winners %}
-      <div class="card">
-        <div class="winner">
-          <img alt="{{ w.name }}" src="{{ w.img | prepend: site.baseurl }}">
-          <div>
-            <div class="guild-label">Navigator’s Guild</div>
-            <div>{{ w.name }}</div>
-          </div>
-        </div>
-      </div>
-      {% endfor %}
-    </section>
-    <!-- Leaderboard Table -->
-   {% if site.data.learner_report %}
-{% assign rows = site.data.learner_report | sort: "Total Completed" | reverse %}
-<table>
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>Learner</th>
-      <th>Total Completed</th>
-      <th>Average Score</th>
-      <th>Weighted Score</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for r in rows %}
-    <tr{% if r["Total Completed"] >= site.data.guild.qualifying_completed %} class="winner-row"{% endif %}>
-      <td class="rank">{{ forloop.index }}</td>
-      <td>{{ r["Learner Name"] }}</td>
-      <td class="rank">{{ r["Total Completed"] }}</td>
-      <td class="rank">{{ r["Average Score"] }}</td>
-      <td class="rank">{{ r["Weighted Score"] }}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
+<div class="stars"></div>
+<div class="twinkles"></div>
+<!-- Soft moving clouds layer for daytime ambiance -->
+<div class="clouds"></div>
+<div class="container">
+<div class="header">
+<!-- Removed logo and plane icon per user request -->
+<div class="title-wrap">
+<h1>Seed Trainers Flight Deck</h1>
+<!-- subtitle removed by user request -->
+</div>
+</div>
+<div class="deck">
+<section class="card">
+<h2>Navigators Guild <span class="badge">Completed All Available Courses</span></h2>
+<p class="muted"><strong>2</strong> members (Colbi Kubo, Jean-Luc Folias) have qualified for the Navigators Guild. The Navigators Guild requires 103 completed courses.</p>
+<div class="kpi">
+<div class="tile">
+<div class="label">Total Learners</div>
+<div class="value">46</div>
+</div>
+<div class="tile">
+<div class="label">Guild Members</div>
+<div class="value">2</div>
+</div>
+<div class="tile">
+<div class="label">Max Courses Available</div>
+<div class="value">115</div>
+</div>
+<div class="tile">
+<div class="label">Top Weighted Score</div>
+<div class="value">107.64</div>
+</div>
+</div>
+<div class="guild-images">
+<img alt="Colbi Kubo" src="colbi_transparent.png" style="display:block; max-width:90%; height:auto; margin:10px auto;"/>
+<img alt="Jean-Luc Folias" src="jeanluc_transparent.png" style="display:block; max-width:90%; height:auto; margin:10px auto;"/>
+</div>
+</section>
+<section class="card">
+<h2>Leaderboard <span class="badge">Sorted by Weighted Score</span></h2>
+<div class="table-wrap">
+<table class="glow-table">
+<thead><tr><th>Rank</th><th>Learner Name</th><th>Total Completed</th><th>Average Score</th><th>Weighted Score</th></tr></thead>
+<tbody><tr class="winner-row"><td>1</td><td>Colbi Kubo</td><td>117</td><td>92</td><td>107.64</td></tr><tr class="winner-row"><td>2</td><td>Jean-Luc Folias</td><td>117</td><td>91</td><td>106.47</td></tr><tr><td>3</td><td>Jeff McHale</td><td>79</td><td>94</td><td>74.26</td></tr><tr><td>4</td><td>Ariana Witherspoon</td><td>75</td><td>94</td><td>70.5</td></tr><tr><td>5</td><td>Jackson Wise</td><td>73</td><td>94</td><td>68.62</td></tr><tr><td>6</td><td>Rajah Chopra</td><td>72</td><td>93</td><td>66.96</td></tr><tr><td>7</td><td>Marco Rabanal</td><td>72</td><td>91</td><td>65.52</td></tr><tr><td>8</td><td>Anthony Bonny</td><td>69</td><td>93</td><td>64.17</td></tr><tr><td>9</td><td>Sam Feldman</td><td>59</td><td>94</td><td>55.46</td></tr><tr><td>10</td><td>Josiah Anderson</td><td>59</td><td>92</td><td>54.28</td></tr><tr><td>11</td><td>George Allen</td><td>48</td><td>89</td><td>42.72</td></tr><tr><td>12</td><td>Mikayla  Jackman</td><td>48</td><td>89</td><td>42.72</td></tr><tr><td>13</td><td>Milton Ramos</td><td>41</td><td>92</td><td>37.72</td></tr><tr><td>14</td><td>Alex Santiago</td><td>41</td><td>91</td><td>37.31</td></tr><tr><td>15</td><td>Mason Matos</td><td>39</td><td>95</td><td>37.05</td></tr><tr><td>16</td><td>Sadie Wood</td><td>39</td><td>95</td><td>37.05</td></tr><tr><td>17</td><td>Keith Ollivierre</td><td>40</td><td>92</td><td>36.8</td></tr><tr><td>18</td><td>Shaquan  Murray</td><td>34</td><td>90</td><td>30.6</td></tr><tr><td>19</td><td>Edwin De Leon</td><td>31</td><td>93</td><td>28.83</td></tr><tr><td>20</td><td>Precious Yates</td><td>33</td><td>85</td><td>28.05</td></tr><tr><td>21</td><td>Jude Chua</td><td>29</td><td>93</td><td>26.97</td></tr><tr><td>22</td><td>Omari Prescott</td><td>29</td><td>91</td><td>26.39</td></tr><tr><td>23</td><td>Bruce Torres</td><td>28</td><td>93</td><td>26.04</td></tr><tr><td>24</td><td>Daniel Savillo</td><td>28</td><td>93</td><td>26.04</td></tr><tr><td>25</td><td>Amir Chase</td><td>28</td><td>90</td><td>25.2</td></tr><tr><td>26</td><td>Mark Muniz</td><td>27</td><td>93</td><td>25.11</td></tr><tr><td>27</td><td>Melvin  Tineo</td><td>26</td><td>90</td><td>23.4</td></tr><tr><td>28</td><td>Chelsea Sanchez</td><td>25</td><td>93</td><td>23.25</td></tr><tr><td>29</td><td>Juan Rojas</td><td>25</td><td>91</td><td>22.75</td></tr><tr><td>30</td><td>Scott Goddard</td><td>25</td><td>91</td><td>22.75</td></tr><tr><td>31</td><td>Allen Parker</td><td>24</td><td>92</td><td>22.08</td></tr><tr><td>32</td><td>Rashae Black</td><td>24</td><td>92</td><td>22.08</td></tr><tr><td>33</td><td>Michele Papaleo</td><td>22</td><td>92</td><td>20.24</td></tr><tr><td>34</td><td>Kaleo Grant</td><td>22</td><td>90</td><td>19.8</td></tr><tr><td>35</td><td>Andrew Figueroa</td><td>22</td><td>87</td><td>19.14</td></tr><tr><td>36</td><td>Jalen Johnson</td><td>21</td><td>90</td><td>18.9</td></tr><tr><td>37</td><td>Brandon Johnson</td><td>22</td><td>84</td><td>18.48</td></tr><tr><td>38</td><td>Sheree Lewis</td><td>19</td><td>91</td><td>17.29</td></tr><tr><td>39</td><td>Kai Jackson</td><td>19</td><td>87</td><td>16.53</td></tr><tr><td>40</td><td>Lori  Walker</td><td>17</td><td>90</td><td>15.3</td></tr><tr><td>41</td><td>Matthew Fraser</td><td>16</td><td>94</td><td>15.04</td></tr><tr><td>42</td><td>Gabriel Reed</td><td>12</td><td>91</td><td>10.92</td></tr><tr><td>43</td><td>Randy Arias</td><td>12</td><td>90</td><td>10.8</td></tr><tr><td>44</td><td>Kevin Yu</td><td>7</td><td>92</td><td>6.44</td></tr><tr><td>45</td><td>Jamil Jordan</td><td>9</td><td>69</td><td>6.21</td></tr><tr><td>46</td><td>Taziyah Lawrence</td><td>5</td><td>91</td><td>4.55</td></tr></tbody>
 </table>
-<p class="muted">* Weighted Score = Total Completed × Average Score ÷ 100</p>
-
-  </div>
-{% else %}
-  <div class="card">
-    <p class="muted">No learner report data available.</p>
-  </div>
-{% endif %}
-        </tbody>
-      </table>
-      <p class="muted">* Weighted Score = Total Completed × Average Score ÷ 100</p>
-    </div>
-    {%- include footer.html -%}
-  </div>
+</div>
+<p class="subtitle">Rows will glow when a learner qualifies for the Navigators Guild.</p>
+</section>
+</div>
+<div class="footer">
+<p>Source: <code>Learner Report.csv</code> • Generated at 2025-09-07 15:04:00</p>
+</div>
+</div>
+<!-- Floaters removed per request to remove all emojis -->
+<script>
+// Subtle 3D tilt based on mouse position
+document.querySelectorAll('.card').forEach(card => {
+  card.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const rx = ((y / rect.height) - 0.5) * -10;
+    const ry = ((x / rect.width) - 0.5) * 10;
+    card.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg) translateY(-2px)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = '';
+  });
+});
+</script>
 </body>
 </html>
