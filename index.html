@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>Seed Trainers — Leaderboard &amp; Navigators Guild</title>
-<style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Seed Trainers — Leaderboard & Navigators Guild</title>
+  <style>
 :root{
   /* Daytime color palette for a bright travel vibe */
   --bg:#e3f2fd;       /* light sky blue */
@@ -198,15 +197,13 @@ body{
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 
 .badge-small{width:16px;height:16px;vertical-align:middle;margin-right:4px;}
-.guild-icon{text-align:center;margin-top:12px;}
-.guild-icon img{
-  /* Increase size for Navigators Guild winner icons */
-  display:block;
-  width:280px;
-  max-width:90%;
-  height:auto;
-  margin:10px auto;
-}
+/* Container for multiple guild badges */
+.guild-icons { text-align: center; margin-top: 12px; }
+.guild-icons img { width: 200px; height: auto; margin: 0 8px; }
+
+/* Legacy single guild badge styling (no longer used) */
+.guild-icon { text-align: center; margin-top: 12px; }
+.guild-icon img { width: 80px; height: auto; }
 
 
 .winner-name{display:inline-block;padding:2px 4px;border:2px solid var(--honey);border-radius:4px;background:rgba(255,255,255,0.6);}
@@ -216,14 +213,9 @@ body{
   .badge-small{width:12px;height:12px;margin-right:3px;}
   .winner-name{font-size:12px;padding:1px 3px;border-width:1.5px;}
   .glow-table thead th, .glow-table tbody td{font-size:12px;padding:8px;}
-  .guild-icon img{
-  /* Increase size for Navigators Guild winner icons */
-  display:block;
-  width:280px;
-  max-width:90%;
-  height:auto;
-  margin:10px auto;
-}
+  .guild-icon img{width:60px;}
+  /* Larger badges on mobile for better visibility */
+  .guild-icons img{width:150px;}
 }
 
 
@@ -231,121 +223,78 @@ body{
 @media (max-width: 600px){
   .badge-small{width:12px;height:12px;margin-right:3px;}
   .glow-table thead th, .glow-table tbody td{font-size:12px;padding:8px;}
-  .guild-icon img{
-  /* Increase size for Navigators Guild winner icons */
-  display:block;
-  width:280px;
-  max-width:90%;
-  height:auto;
-  margin:10px auto;
-}
+  .guild-icon img{width:60px;}
+  /* Adjust badge size for small screens */
+  .guild-icons img{width:150px;}
   /* Thinner gold border on mobile */
   .winner-row{box-shadow: 0 0 0 1.5px var(--honey) inset;}
 }
 </style>
 </head>
 <body>
-<div class="stars"></div>
-<div class="twinkles"></div>
-<!-- Soft moving clouds layer for daytime ambiance -->
-<div class="clouds"></div>
-<div class="container">
-<div class="header">
-<!-- Removed logo and plane icon per user request -->
-<div class="title-wrap">
+  <div class="stars"></div>
+  <div class="twinkles"></div>
+  <!-- Soft moving clouds layer for daytime ambiance -->
+  <div class="clouds"></div>
+  <div class="container">
+    <div class="header">
+      <!-- Removed logo and plane icon per user request -->
+      <div class="title-wrap">
 <h1>Seed Trainers Flight Deck</h1>
-<!-- subtitle removed by user request -->
-</div>
-</div>
-<div class="deck">
-<section class="card">
-<h2>Navigators Guild <span class="badge">Completed All Available Courses</span></h2>
-<p class="muted"><strong>3</strong> members (Anthony Bonny, Colbi Kubo, Jean-Luc Folias) have qualified for the Navigators Guild. The Navigators Guild requires 119 completed courses.</p>
-<div class="kpi">
-<div class="tile">
-<div class="label">Total Learners</div>
-<div class="value">45</div>
-</div>
-<div class="tile">
-<div class="label">Guild Members</div>
-<div class="value">3</div>
-</div>
-<div class="tile">
-<div class="label">Max Courses Available</div>
-<div class="value">119</div>
-</div>
-<div class="tile">
-<div class="label">Top Weighted Score</div>
-<div class="value">109.98</div>
-</div>
-</div>
-<div class="guild-icon">
-<img alt="Colbi Kubo" src="colbi_transparent.png"/>
-<img alt="Jean-Luc Folias" src="jeanluc_transparent.png"/>
-<img alt="Anthony Bonny" src="anthony.png"/>
-</div>
-</section>
-<section class="card">
-<h2>Leaderboard <span class="badge">Sorted by Weighted Score</span></h2>
-<div class="table-wrap">
-<table class="glow-table">
-<thead><tr><th>Rank</th><th>Learner Name</th><th>Total Completed</th><th>Average Score</th><th>Weighted Score</th></tr></thead>
-<tbody><tr class="winner-row"><td>1</td><td>Anthony Bonny</td><td>117</td><td>94</td><td>109.98</td></tr>
-<tr class="winner-row"><td>2</td><td>Colbi Kubo</td><td>117</td><td>94</td><td>109.98</td></tr>
-<tr class="winner-row"><td>3</td><td>Jean-Luc Folias</td><td>117</td><td>92</td><td>107.64</td></tr>
-<tr><td>4</td><td>Ariana Witherspoon</td><td>101</td><td>94</td><td>94.94</td></tr>
-<tr><td>5</td><td>Rashae Black</td><td>90</td><td>93</td><td>83.70</td></tr>
-<tr><td>6</td><td>Jeff McHale</td><td>79</td><td>94</td><td>74.26</td></tr>
-<tr><td>7</td><td>Jackson Wise</td><td>73</td><td>94</td><td>68.62</td></tr>
-<tr><td>8</td><td>Rajah Chopra</td><td>72</td><td>93</td><td>66.96</td></tr>
-<tr><td>9</td><td>Marco Rabanal</td><td>72</td><td>91</td><td>65.52</td></tr>
-<tr><td>10</td><td>Sam Feldman</td><td>66</td><td>93</td><td>61.38</td></tr>
-<tr><td>11</td><td>Milton Ramos</td><td>64</td><td>94</td><td>60.16</td></tr>
-<tr><td>12</td><td>Sadie Wood</td><td>62</td><td>96</td><td>59.52</td></tr>
-<tr><td>13</td><td>Josiah Anderson</td><td>59</td><td>92</td><td>54.28</td></tr>
-<tr><td>14</td><td>George Allen</td><td>55</td><td>90</td><td>49.50</td></tr>
-<tr><td>15</td><td>Alex Santiago</td><td>41</td><td>91</td><td>37.31</td></tr>
-<tr><td>16</td><td>Mason Matos</td><td>39</td><td>95</td><td>37.05</td></tr>
-<tr><td>17</td><td>Keith Ollivierre</td><td>40</td><td>92</td><td>36.80</td></tr>
-<tr><td>18</td><td>Precious Yates</td><td>42</td><td>86</td><td>36.12</td></tr>
-<tr><td>19</td><td>Omari Prescott</td><td>35</td><td>91</td><td>31.85</td></tr>
-<tr><td>20</td><td>Shaquan  Murray</td><td>34</td><td>90</td><td>30.60</td></tr>
-<tr><td>21</td><td>Edwin De Leon</td><td>31</td><td>93</td><td>28.83</td></tr>
-<tr><td>22</td><td>Jude Chua</td><td>29</td><td>93</td><td>26.97</td></tr>
-<tr><td>23</td><td>Bruce Torres</td><td>28</td><td>93</td><td>26.04</td></tr>
-<tr><td>24</td><td>Daniel Savillo</td><td>28</td><td>93</td><td>26.04</td></tr>
-<tr><td>25</td><td>Amir Chase</td><td>28</td><td>90</td><td>25.20</td></tr>
-<tr><td>26</td><td>Mark Muniz</td><td>27</td><td>93</td><td>25.11</td></tr>
-<tr><td>27</td><td>Melvin  Tineo</td><td>27</td><td>91</td><td>24.57</td></tr>
-<tr><td>28</td><td>Chelsea Sanchez</td><td>25</td><td>93</td><td>23.25</td></tr>
-<tr><td>29</td><td>Juan Rojas</td><td>25</td><td>91</td><td>22.75</td></tr>
-<tr><td>30</td><td>Scott Goddard</td><td>25</td><td>91</td><td>22.75</td></tr>
-<tr><td>31</td><td>Allen Parker</td><td>24</td><td>92</td><td>22.08</td></tr>
-<tr><td>32</td><td>Michele Papaleo</td><td>22</td><td>92</td><td>20.24</td></tr>
-<tr><td>33</td><td>Kaleo Grant</td><td>22</td><td>90</td><td>19.80</td></tr>
-<tr><td>34</td><td>Andrew Figueroa</td><td>22</td><td>87</td><td>19.14</td></tr>
-<tr><td>35</td><td>Jalen Johnson</td><td>21</td><td>90</td><td>18.90</td></tr>
-<tr><td>36</td><td>Brandon Johnson</td><td>22</td><td>84</td><td>18.48</td></tr>
-<tr><td>37</td><td>Sheree Lewis</td><td>19</td><td>91</td><td>17.29</td></tr>
-<tr><td>38</td><td>Kai Jackson</td><td>19</td><td>87</td><td>16.53</td></tr>
-<tr><td>39</td><td>Lori  Walker</td><td>17</td><td>90</td><td>15.30</td></tr>
-<tr><td>40</td><td>Matthew Fraser</td><td>16</td><td>94</td><td>15.04</td></tr>
-<tr><td>41</td><td>Gabriel Reed</td><td>12</td><td>91</td><td>10.92</td></tr>
-<tr><td>42</td><td>Randy Arias</td><td>12</td><td>90</td><td>10.80</td></tr>
-<tr><td>43</td><td>Kevin Yu</td><td>7</td><td>92</td><td>6.44</td></tr>
-<tr><td>44</td><td>Jamil Jordan</td><td>9</td><td>69</td><td>6.21</td></tr>
-<tr><td>45</td><td>Taziyah Lawrence</td><td>5</td><td>91</td><td>4.55</td></tr></tbody>
-</table>
-</div>
-<p class="subtitle">Rows will glow when a learner qualifies for the Navigators Guild.</p>
-</section>
-</div>
-<div class="footer">
-<p>Source: <code>Learner Report (1).csv</code> • Generated at 2025-09-08 10:27:30</p>
-</div>
-</div>
-<!-- Floaters removed per request to remove all emojis -->
-<script>
+        <!-- subtitle removed by user request -->
+      </div>
+    </div>
+
+    <div class="deck">
+      <section class="card">
+<h2>Navigators Guild <span class="badge">Completed All Available Courses</h2>
+        <p class='muted'><strong>5</strong> members (Anthony Bonny, Colbi Kubo, Jean-Luc Folias, Marco Rabanal, Rashae Black) have qualified for the Navigators Guild. The Navigators Guild requires 118 completed courses.</p>
+        <div class="kpi">
+          <div class="tile">
+            <div class="label">Total Learners</div>
+          <div class="value">45</div>
+          </div>
+          <div class="tile">
+          <div class="label">Guild Members</div>
+            <div class="value">5</div>
+          </div>
+          <div class="tile">
+          <div class="label">Max Courses Available</div>
+            <div class="value">122</div>
+          </div>
+          <div class="tile">
+          <div class="label">Top Weighted Score</div>
+            <div class="value">111.86</div>
+          </div>
+        </div>
+        <div class='guild-icons'>
+          <img src='colbi_transparent.png' alt='Colbi Badge'>
+          <img src='jeanluc_transparent.png' alt='Jean-Luc Badge'>
+        </div>
+  </section>
+
+      <section class="card">
+<h2>Leaderboard <span class="badge">Sorted by Weighted Score</h2>
+        
+    <div class="table-wrap">
+      <table class="glow-table">
+        <thead><tr><th>Rank</th><th>Learner Name</th><th>Total Completed</th><th>Average Score</th><th>Weighted Score</th></tr></thead>
+        <tbody><tr class='winner-row'><td>1</td><td>Anthony Bonny</td><td>119</td><td>94</td><td>111.86</td></tr><tr class='winner-row'><td>2</td><td>Marco Rabanal</td><td>120</td><td>93</td><td>111.60</td></tr><tr class='winner-row'><td>3</td><td>Colbi Kubo</td><td>118</td><td>94</td><td>110.92</td></tr><tr class='winner-row'><td>4</td><td>Rashae Black</td><td>118</td><td>94</td><td>110.92</td></tr><tr class='winner-row'><td>5</td><td>Jean-Luc Folias</td><td>119</td><td>92</td><td>109.48</td></tr><tr><td>6</td><td>Ariana Witherspoon</td><td>104</td><td>94</td><td>97.76</td></tr><tr><td>7</td><td>Milton Ramos</td><td>106</td><td>91</td><td>96.46</td></tr><tr><td>8</td><td>Jackson Wise</td><td>83</td><td>95</td><td>78.85</td></tr><tr><td>9</td><td>Jeff McHale</td><td>79</td><td>94</td><td>74.26</td></tr><tr><td>10</td><td>Sam Feldman</td><td>76</td><td>93</td><td>70.68</td></tr><tr><td>11</td><td>Rajah Chopra</td><td>74</td><td>91</td><td>67.34</td></tr><tr><td>12</td><td>George Allen</td><td>72</td><td>91</td><td>65.52</td></tr><tr><td>13</td><td>Sadie Wood</td><td>62</td><td>96</td><td>59.52</td></tr><tr><td>14</td><td>Josiah Anderson</td><td>59</td><td>92</td><td>54.28</td></tr><tr><td>15</td><td>Alex Santiago</td><td>47</td><td>91</td><td>42.77</td></tr><tr><td>16</td><td>Precious Yates</td><td>48</td><td>88</td><td>42.24</td></tr><tr><td>17</td><td>Mason Matos</td><td>39</td><td>95</td><td>37.05</td></tr><tr><td>18</td><td>Keith Ollivierre</td><td>40</td><td>92</td><td>36.80</td></tr><tr><td>19</td><td>Omari Prescott</td><td>36</td><td>91</td><td>32.76</td></tr><tr><td>20</td><td>Shaquan  Murray</td><td>34</td><td>90</td><td>30.60</td></tr><tr><td>21</td><td>Edwin De Leon</td><td>31</td><td>93</td><td>28.83</td></tr><tr><td>22</td><td>Jude Chua</td><td>29</td><td>93</td><td>26.97</td></tr><tr><td>23</td><td>Bruce Torres</td><td>28</td><td>93</td><td>26.04</td></tr><tr><td>24</td><td>Daniel Savillo</td><td>28</td><td>93</td><td>26.04</td></tr><tr><td>25</td><td>Melvin  Tineo</td><td>28</td><td>91</td><td>25.48</td></tr><tr><td>26</td><td>Amir Chase</td><td>28</td><td>90</td><td>25.20</td></tr><tr><td>27</td><td>Mark Muniz</td><td>27</td><td>93</td><td>25.11</td></tr><tr><td>28</td><td>Chelsea Sanchez</td><td>25</td><td>93</td><td>23.25</td></tr><tr><td>29</td><td>Juan Rojas</td><td>25</td><td>91</td><td>22.75</td></tr><tr><td>30</td><td>Scott Goddard</td><td>25</td><td>91</td><td>22.75</td></tr><tr><td>31</td><td>Allen Parker</td><td>24</td><td>92</td><td>22.08</td></tr><tr><td>32</td><td>Michele Papaleo</td><td>22</td><td>92</td><td>20.24</td></tr><tr><td>33</td><td>Andrew Figueroa</td><td>23</td><td>88</td><td>20.24</td></tr><tr><td>34</td><td>Kaleo Grant</td><td>22</td><td>90</td><td>19.80</td></tr><tr><td>35</td><td>Jalen Johnson</td><td>21</td><td>90</td><td>18.90</td></tr><tr><td>36</td><td>Brandon Johnson</td><td>22</td><td>81</td><td>17.82</td></tr><tr><td>37</td><td>Sheree Lewis</td><td>19</td><td>91</td><td>17.29</td></tr><tr><td>38</td><td>Kai Jackson</td><td>19</td><td>87</td><td>16.53</td></tr><tr><td>39</td><td>Lori  Walker</td><td>17</td><td>90</td><td>15.30</td></tr><tr><td>40</td><td>Matthew Fraser</td><td>16</td><td>94</td><td>15.04</td></tr><tr><td>41</td><td>Gabriel Reed</td><td>12</td><td>91</td><td>10.92</td></tr><tr><td>42</td><td>Randy Arias</td><td>12</td><td>90</td><td>10.80</td></tr><tr><td>43</td><td>Kevin Yu</td><td>7</td><td>92</td><td>6.44</td></tr><tr><td>44</td><td>Jamil Jordan</td><td>9</td><td>69</td><td>6.21</td></tr><tr><td>45</td><td>Taziyah Lawrence</td><td>5</td><td>91</td><td>4.55</td></tr></tbody>
+      </table>
+    </div>
+    
+        <p class="subtitle">Rows will glow when a learner qualifies for the Navigators Guild.</p>
+      </section>
+    </div>
+
+    <div class="footer">
+      <p>Source: <code> Learner Report (2).csv </code> • Generated at 2025-09-18 18:22:31</p>
+    </div>
+  </div>
+
+  <!-- Floaters removed per request to remove all emojis -->
+
+  <script>
 // Subtle 3D tilt based on mouse position
 document.querySelectorAll('.card').forEach(card => {
   card.addEventListener('mousemove', (e) => {
